@@ -1,0 +1,10 @@
+Under the Hood of Compilation
+===================================================================================
+process of compiling
+-------------------------------------------------------
+    1) preprocessing:   runs all the preprocess directives (#include, #define, etc) which generally include all the relevant libraries or defines unchangeable variables
+        ->while all the information is included, the relevant piece in preprocessing is the prototypes themselves, which will indicate to C later to seek out the expanded definitions of the prototypes
+        ->this accesses all the relevant libraries to the code and begins the conversion process for EACH of them (eg: hello.c, stdio.c, cs50.c) in separate files
+    2) compiling:       converts the abstracted (human code) into assembly for each file
+    3) assembling:      converts the assembly code into machine code (0,1) for each file
+    4) linking:         links all the assembled files (all the 0's and 1's of the three different files) into one final file

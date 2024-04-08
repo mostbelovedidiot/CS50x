@@ -1,0 +1,71 @@
+Addresses, Pointers, Soft & Hard Links
+===================================================================================
+bus
+-------------------------------------------------------
+    a pathway to which data is transferred (two types: 32-bit & 64-bit). metaphor: a bus is a motorway and the bits are the individual lanes so on a 64-bit bus more data can travel across a wider range, and of course the traffic is the data. a bus can be unidirectional or bidirectional, meaning it can move data from and to (unidirectional) or either to or from (bidirectional).
+        1) address bus [unidirectional]: sends a memory address FROM the CPU TO the RAM, the CPU is asking the location (memory address) of the next piece of data to be read/write
+        2) data bus [bidirectional]: once the address bus has specified the location the RAM can now send and receive information to which the CPU is now executing the data
+        3) control bus [bidirectional]: carries commands and status messages which can tell the RAM to backup data or to prioritise this instruction rather than this other instruction, also sends messages to other hardware devices
+            sample signal sent in a control bus (all are 0 or 1, typically 0 means on, or performing this action):
+                1) clock:       regulates the cpu
+                2) read
+                3) write
+                4) interrupt:   stopping what the cpu is doing to perform something else
+
+clocks
+-------------------------------------------------------
+    1) system clock: a timing signal (typically produced by a quartz oscillator) that synchronizes the internal operation of the CPU
+    2) bus clock: a separate timing signal that synchronizes the activities of writing to and reading from the bus
+
+    In more complex architectures, where there are multiple active components (CPUs, FPUs, graphics cards, memory controllers, I/O controllers) running at different speeds, then the bus clock is often the fundamental synchronizing signal, and each component then multiplies the frequency of the bus clock signal by a specific ratio to obtain its internal system clock signal
+
+addresses
+-------------------------------------------------------
+    a non-negative integer number that uniquely identifies a specific location in the storage available to the program
+        1) on small CPUs, this will literally be the physical address
+    can think of main memory or RAM as an extensive array of bytes and the addresses as the indexes of each array element or byte within the array. most variables stored in the array (ie: in main memory) are larger than one byte, so the address of each variable is the index of the first byte of that variable
+
+    a variable is a named location in memory with three main characteristics:
+        1) namne
+        2) content
+        3) address
+    the compiler can interpret the name at either its address (l-value) or contents (r-value) based on how the variable appears in a given statement. for the variable counter: (l-value: counter = 5) (r-value: balance = counter * 10)
+
+pointer
+-------------------------------------------------------
+    a variable that stores or contains the address of data, possibly another variable. pointers allow programmers to access other variables by their addresses. any programming element (variable, object, function, etc.) stored in memory has an address that can be found and saved in a pointer
+
+    example of defining a pointer:
+        int *a=&b  ==> actually translate to:
+                                                int *a;
+                                                a = &b;
+        int b = 10;         b address is hypothetically 1000
+        int *a = &b;        a address is hypothetically 4000
+            VALUE of b          = 10
+            ADDRESS of b (&b)   = 1000
+            VALUE of a (&b)     = 1000
+            VALUE of *a (b)     = 10
+        ***note how a & *a have different values
+        you basically store the address in a variable, and then use the pointer * to then indicate that you are retrieving the value of that address
+
+    swapping values of variable and pointers:
+        https://codeburst.io/pointers-in-5-minutes-b94f9d1dfdb5
+
+    dangling pointer:
+        if the address to which the pointer is pointing to is no longer accessible in the memory then that pointer is called a dangling pointer
+    
+    null pointer:
+        int *ptr=NULL;
+        on assigning a pointer to null you are just telling it isn’t pointing to anything
+
+pointers vs addresses
+-------------------------------------------------------
+    an address is a location in main memory and cannot change. alternatively, a pointer is a kind of variable that holds or stores an address, and the content of a pointer can change.
+
+addresses & scope
+-------------------------------------------------------
+    scope is literally a matter of address location
+
+    as an address is a physical location in main memory, modifications to a variable within the same scope (in C, the same function for example), are performed at the same address (the contents of the address are modified)
+
+    should the scope be different, say calling a function within another function and then again in the main executable, the address may or may not be same

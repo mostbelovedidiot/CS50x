@@ -1,0 +1,60 @@
+Basic Elements of Code, Techniques of Writing Code, Linux Commands
+===================================================================================
+compiler
+-------------------------------------------------------
+    compilers can translate between the following:
+        1) machine code (binary, 0s & 1s) -> source code (higher-level languages)
+        2) source code -> source code [eg: c to c++ or java to yourmother'sfatass]
+
+virtual machine
+-------------------------------------------------------
+    virtual machines utilize the hypervisor (a software such as vmware, citrix, microsoft hyper-v that allocates and controls the sharing of a machine's hardware) to run multiple different operating systems in which you can then run different applications (eg: your email server on windows, your webserver on linux, your database on unix)
+
+    hypervisors have a scalability issue due to their physical constraints (additional cpu, ram, disk space) but apparently have a security issue (it is a trajectory for attack which can lead to a data breach) as well
+
+containers 
+-------------------------------------------------------
+    are single applications that contain all of the necessary components to function (files, configurations, dependencies). the role of the hypervisor is substituted with a container engine (such as docker), which unpacks the files and hands them off to the kernel
+        ->consider OSRS clients like RuneLite that include their specific java dependencies to run appropriately, as opposed to needing the OS to have a particular java, which can run into issues when it doesn't perform accurately due to differences in version or even the intricacies between operating systems
+        ->a single application can be something as vast as a website, in which the container for a website would include everything it takes for it to be hosted on another computer: libraries, html, scripts, web images, web server software
+            ->consider piratebay devs including everything necessary to run the site so it can be distribut3ed to multiple countries because people have confused ideas on the nature of intellectual property (monetary incentives)
+
+    docker is the big boy that CREATES containers, manages, and runs them
+        a benefit to using docker is that it is (apparently) very secure, which presumably avoids the headache of securing individual applications for one's project
+
+        docker components:
+            1) client: you can interface with this
+            2) daemon: background process that performs chores for docker. it consists of:
+                a) docker host: manages the sending and receiving of requests from the client
+                b) docker daemon (which has containers): communicates with the components (containers) to perform and execute the requests received by the host
+                c) docker registry (which includes images): the background juice (bin files, libraries) which is called an image, which contains all the instructions to create containers, which is then executed by the daemon, and sent via the host back to the client.
+                the registry itself is a service used for hosting and distrubiting the images (ie: it is not neccesarily located locally)
+                the images are not only the required tools, but also the very source of the project's code
+            3) rest api: connects the client to the daemon. sends messages between the two using cli commands (command line interface)
+
+        docker compose:
+            runs all the containers under a single service (imagine it as a process in your task manager), and as such they are able to communicate with each other simply and efficiently
+
+vms vs containers
+-------------------------------------------------------
+    virtual machines use a lot of resources (ram cpu) and are often slower to deploy since they are an operating system in and of itself
+
+    containers are running natively on your operating system, have a small size, boot up quickly, and don't take as much resources (being on your OS)
+
+    both are deployable on different machines (you CAN easily move a VM), but containers are smaller. both are able to be 
+
+    the issue of course, is the fact that containers must function within the machine's respective operating system, but there are ways to get around this
+
+    giga brain strategies:
+        containers within vms (cells within cells within cells)
+
+c variables
+-------------------------------------------------------
+    strings = string ____
+        string fuckyou = "fuck you fucking retard"
+    integers = int
+        int idiot = 420
+        idiot++
+    single character = char
+        char whyisthisathing = a
+

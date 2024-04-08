@@ -1,0 +1,91 @@
+Basic Elements of Code, Techniques of Writing Code, Linux Commands
+===================================================================================
+compiler
+-------------------------------------------------------
+    compilers can translate between the following:
+        1) machine code (binary, 0s & 1s) -> source code (higher-level languages)
+        2) source code -> source code [eg: c to c++ or java to yourmother'sfatass]
+
+c variables
+-------------------------------------------------------
+    strings = string ____
+        string fuckyou = "fuck you fucking retard"
+    integers = int
+        int idiot = 420
+        idiot++
+    single character = char
+        char whyisthisathing = a
+    constant = const int
+        makes a variable unchangeable in its value (const int n = 3)
+
+types (some is CS-50 exclusive)
+-------------------------------------------------------
+    types   explanation             printf call
+    -------------------------------------------------------
+    bool    true/false (boolean)    
+    char    single char             %c
+    double  big decimal             %f
+    float   small decimal           %f
+    int     small whole number      %i
+    long    large whole number      %li
+    string  string of chars         %
+    pointer address of a variable   %p
+        ->int a = 55;
+	    printf("The address of a is %p", &a);
+    *numbers are stored as 4 bytes (32 bits), or 8 bytes (64 bits) for double and long
+    *so x64 architecture is literally the ability to store longer numbers, more specifically by adding 8 new 64-bit registers and zero-extending (adding zeroes) to the 32-bit registers
+
+Linux Commands
+-------------------------------------------------------
+        -R  recursive   (capitalization matters, especially when using commands that utilize a different -r such as chmod)
+        -v  verbose
+
+    cd:     changing our current directory (folder)
+    cp:     copying files and directories
+        -> utilitize -r to copy the directory
+    ls:     listing files in a directory
+    mkdir:  for making a directory
+    mv:     moving (renaming) files and directories
+    rm:     removing (deleting) files
+        -> utilize -f to skip the confirmation
+        -> utilize -r for directories (-rf to skip confirmation)
+    rmdir:  for removing (deleting) directories
+
+    sudo    runs commands when elevated priviledge (consider administrator on windows), these
+            priviledges are considered root priviledges (root user)
+    su      switch to a different user and execute a command in shell without logging out
+    echo    will return a string based on the previous commands, or with a string input
+        *check out its options when possible
+    chmod   changes file permissions (and directories): read, write, execute
+            will be far more useful when deploying code, indiicating which files are accessible to the user
+        -u    user      permission to user
+        -g    group     permission to group
+        -o    others    permission to others
+        +/-r  read      grant/remove (+r / -r)
+        +/-w  write     grant/remove (+w / -w)
+        +/-x  execute   grant/remove (+x / -x)
+        *check out octal mode
+    ln
+    touch
+    rmdir
+    man
+    diff
+    clear
+    telnet
+
+magic numbers
+-------------------------------------------------------
+    when you have a number that represents something very critical to the logic of the code (eg: the upper limit of something which you are iterating upon which is central to the code's logic) and this number exists arbitrarily in the code without any context (eg: in a for loop)
+
+    it is better to define magic numbers outside of the relevant code in order to readily demonstrate its purpose to the reader -- not as a global int, because this could be manipulated either within the function or elsewhere
+
+    one solution would be to have a variable defined as a certain number, never modulate that variable, and utilize additional variables representing the manipulation of that number to be used in respective functions -- this can get messy 
+
+    solution: utilize a pre-processed directive or macro:
+    by convention, these symbolic constants are indicated by all CAPS, to not be confused with vars
+        #define     NAME    REPLACEMENT
+        
+        example:
+        #define     PI      3.14159265323
+            ->all references to PI will be hardcoded to return that float
+        #define     COURSE  "CS50"
