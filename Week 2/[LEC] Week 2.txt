@@ -1,4 +1,4 @@
-Under the Hood of Compilation
+Under the Hood of Compilation, Command-Line Arguments in Code (as opposed to dash variants), Cryptography
 ===================================================================================
 process of compiling
 -------------------------------------------------------
@@ -8,3 +8,30 @@ process of compiling
     2) compiling:       converts the abstracted (human code) into assembly for each file
     3) assembling:      converts the assembly code into machine code (0,1) for each file
     4) linking:         links all the assembled files (all the 0's and 1's of the three different files) into one final file
+
+command-line arguments in C code
+-------------------------------------------------------
+    consider int main(int argc, string argv[])
+        1) argc = argument count, how many words did you type at the command-line prompt
+        2) argv = argument vector, generally an array but specifically refers to a list of command-line arugments
+
+    exit status:
+        when a program ends, an exit code is provided to the computer
+        1) 0 = no error
+        2) 1 = error
+        *notice that int main(void) IS calling an int
+
+        you can return values of 0 and 1 to forcibly exit the code and this will be documented by the exit status, which you can find by then running 'echo $?' in the terminal
+
+        running echo $? will print out the exit status
+        1) 0 = no error = TRUE
+        2) 1 = error = FALSE
+
+Cryptography
+-------------------------------------------------------
+    inputs       function   output
+    -----------------------------
+    key       ->  cipher <-> ciphertext
+    plaintext<->         <-  -key
+
+    this process is reversible, just have to use the opposite method of encryption

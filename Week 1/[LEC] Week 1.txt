@@ -19,17 +19,22 @@ c variables
         makes a variable unchangeable in its value (const int n = 3)
 
 types (some is CS-50 exclusive)
--------------------------------------------------------
-    types   explanation             printf call
-    -------------------------------------------------------
-    bool    true/false (boolean)    
-    char    single char             %c
-    double  big decimal             %f
-    float   small decimal           %f
-    int     small whole number      %i
-    long    large whole number      %li
-    string  string of chars         %
-    pointer address of a variable   %p
+--------------------------------------------------------------
+    types   explanation             printf call         size
+    ----------------------------------------------------------
+    bool    true/false (boolean)                        1 byte
+    char    single char             %c                  1 byte
+    double  big decimal             %f                  8 bytes
+    float   small decimal           %f                  4 bytes
+    int     small whole number      %i                  4 bytes
+    long    large whole number      %li                 8 bytes
+    string  string of chars         %                   ? bytes
+        ->strings are literally arrays of chars
+        ->strings include a sentinel value at the end of the array to indicate the end of the string, which has a value of \0 (which means 8 '0' bits) or NUL in an IDE (not to be confused with NULL, "NUL" simply means the sentinel value of 8 '0' bits --> it is also the ASCII character of value 0)
+            *sentinel value: a special value in the context of an algorithm which uses its presence as a condition of termination, typically in a loop or recursive algorithm
+            ->the "sentinel" guards or keeps watch over the string/loop/recursion etc
+    arrays  sequence of values                          
+    pointer address of a variable   %p                  4 bytes (32-bit) 8 bytes (64-bit)
         ->int a = 55;
 	    printf("The address of a is %p", &a);
     *numbers are stored as 4 bytes (32 bits), or 8 bytes (64 bits) for double and long
