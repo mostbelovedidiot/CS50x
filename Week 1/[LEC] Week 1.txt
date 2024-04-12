@@ -38,6 +38,22 @@ types (some is CS-50 exclusive)
     pointer address of a variable   %p                  4 bytes (32-bit) 8 bytes (64-bit)
         ->int a = 55;
 	    printf("The address of a is %p", &a);
+    struct  values/fields/attributes appended to custom data types
+        ->our own personal data type which is called by whatever variable we want to assign it
+        ->soraka spells[4]; initializes a data type called soraka which is an array with 4 values
+            spells[0].name = "Starfall";
+            spells[0].school = "Cosmic";
+            spells[1].name = "Heal";
+            spells[2].school = "Nature;
+            *.name and .school are examples of struct or field or attribute that we can add to our custom data type
+        ->.name and .school have to be defined earlier as structs in the code as such, and the prototype for a our data structure must be initialized as well;
+            typedef struct
+            {
+                string name;
+                string school;
+            } spells;
+                ->for style, spells is located on the same line as the curly brace
+
     *numbers are stored as 4 bytes (32 bits), or 8 bytes (64 bits) for double and long
     *so x64 architecture is literally the ability to store longer numbers, more specifically by adding 8 new 64-bit registers and zero-extending (adding zeroes) to the 32-bit registers
 

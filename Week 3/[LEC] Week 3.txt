@@ -1,0 +1,51 @@
+Running Time (Efficiency) of Algorithms
+===================================================================================
+mathematical efficiency of algorithm
+-------------------------------------------------------
+    efficiency is discussed in 'the order of' various running times, which is to say a broad description that is unconcerned with mathematical detail to state that an algorithm will generally perform at a basic mathematical function's operation
+        from slowest to fastest (it takes 'n' steps to accomplish):
+            1) O(n^2)       quadratic
+            2) O(nlogn)     
+            3) O(n)         [linear search = n, n+1, n+2]
+            4) O(logn)      [binary search], logarithmic
+            5) O(1)         [best case], constant number of steps total
+                            also known as "constant time"
+            *for each algorithm, the best case scenario is denoted by Ω omega
+                ->Ω(n^2), Ω(nlogn), Ω(n), and so on
+            *if the upper bound and lower bound are the same for an algorithm (best case and worst case are the same), theta is used to denote this situation Θ
+                ->evaluating upper and lower bounds is evaluating asymptotes, so we call the comparison asymptotic notation
+    
+    sorting
+        makes searches faster after you have sorted instead of relying on algorithms suited for random distribution of numbers, since you know they are now arranged consecutively
+
+types of basic algorithms
+-------------------------------------------------------
+    linear search
+        checking left to right in an array
+    binary search
+        check the middle position, search the left, search the right
+    selection sort
+        go through the entire set to find the smallest number, replace it with the left most index, repeat on the next index
+        (n-1) + (n-2) + (n-3) + ... + 1 (sequence evaluates to: n(n-1)/2)
+        ^ we compare the whole set, then the whole set - 1 index, and so on
+            sequence evaluates to: n^2/2 - n/2, and the exponentiation is the most relevant factor here so
+            worst case: O(n^2) -- remember this is a rough approximation of the sequence
+            best case: when all values are pre-sorted, you still check for the smallest value each time and assign it the index, so you are still at the same efficiency Ω(n^2)
+            whole efficiency: Θ(n^2)
+    bubble sort
+        on every iteration, compare the number on the next index to the previous, swap them if necessary, go through the entire set, repeat
+        (n-1) x (n-1)
+            sequence evaluates to: n^2 - 2n + 1 which we approximate to n^2
+            worst case: O(n^2) -- we have to evaluate the entire set multiple times, performing swaps where necessary
+            best case: Ω(n) -- since the entire set is already sorted, we only evaluate the whole set n times
+    merge sort
+        evaluate the entire set, split the set into two. recursively split the sets into two, until you are comparing single numbers. for the first set of two numbers, sort them, then merge them into a new set --> then sort and merge THIS with the second set of two numbers, and so on until you only have two halves of the original set which are respectively sorted. sort and merge these last two halves to create a complete sorted set
+            worst case: O(nlogn)
+            best case: Ω(nlogn)
+            whole efficiency: Θ(nlogn)
+
+efficiency in terms of space
+-------------------------------------------------------
+    evaluation (algorithms) that perform comparisons within the same set naturally require less space (memory) as it is only performing functions at limited amounts of addresses whereas performing multiple comparisons at once will require more space to operate as you create additional addresses to then perform comparisons upon (you create additional strings which then encompass additional bytes of data)
+
+    this has a real-life relevancy in terms of cost
