@@ -1,4 +1,4 @@
-Running Time (Efficiency) of Algorithms
+Running Time (Efficiency) of Algorithms & Recursion
 ===================================================================================
 mathematical efficiency of algorithm
 -------------------------------------------------------
@@ -10,6 +10,8 @@ mathematical efficiency of algorithm
             4) O(logn)      [binary search], logarithmic
             5) O(1)         [best case], constant number of steps total
                             also known as "constant time"
+                            *regardless of the amount of steps it takes, if an algorithm takes a FIXED amount of steps it is denoted by:
+                                Ω(1)
             *for each algorithm, the best case scenario is denoted by Ω omega
                 ->Ω(n^2), Ω(nlogn), Ω(n), and so on
             *if the upper bound and lower bound are the same for an algorithm (best case and worst case are the same), theta is used to denote this situation Θ
@@ -20,10 +22,22 @@ mathematical efficiency of algorithm
 
 types of basic algorithms
 -------------------------------------------------------
+SEARCHES:
     linear search
         checking left to right in an array
+            worst-case: O(n)
+            best-case: Ω(1)
     binary search
-        check the middle position, search the left, search the right
+        (ONLY WORKS IN PRE-SORTED ARRAYS as dividing random sets arbitrarily gives no insight as to which direction we need to move in)
+            1) split the data set and check the exact index where the split ocurred
+            2) a) if the value is greater than the middle index, evaluate the array from the middle index+1 to the end index
+               b) if the value is greater than the middle index, evaluate the array from the zero index to the middle index - 1
+            3) calculate the new midpoint and evaluate the value
+            4) repeat 2-4
+            worst-case: O(logn)
+            best-case: Ω(1)
+
+SORTS:
     selection sort
         go through the entire set to find the smallest number, replace it with the left most index, repeat on the next index
         (n-1) + (n-2) + (n-3) + ... + 1 (sequence evaluates to: n(n-1)/2)
@@ -33,13 +47,16 @@ types of basic algorithms
             best case: when all values are pre-sorted, you still check for the smallest value each time and assign it the index, so you are still at the same efficiency Ω(n^2)
             whole efficiency: Θ(n^2)
     bubble sort
-        on every iteration, compare the number on the next index to the previous, swap them if necessary, go through the entire set, repeat
+        on every iteration, compare the number on the next index to the previous, swap them if necessary, go through the entire set (minus the last index), repeat
+            ->the sort utilizes an additional variable (initially set to non-zero) that indicates the amount of swaps that happens on each iteration, resetting to zero at the start of each iteration. once the variable is 0 (no swaps have occurred), it ends
+            ->through each iteration the newly last index will be the maximum value and the algorithm does not need to consider it again
         (n-1) x (n-1)
             sequence evaluates to: n^2 - 2n + 1 which we approximate to n^2
             worst case: O(n^2) -- we have to evaluate the entire set multiple times, performing swaps where necessary
             best case: Ω(n) -- since the entire set is already sorted, we only evaluate the whole set n times
     merge sort
         evaluate the entire set, split the set into two. recursively split the sets into two, until you are comparing single numbers. for the first set of two numbers, sort them, then merge them into a new set --> then sort and merge THIS with the second set of two numbers, and so on until you only have two halves of the original set which are respectively sorted. sort and merge these last two halves to create a complete sorted set
+        efficiency: we split up n elements (logn) and then recombine (multiply) them (n)
             worst case: O(nlogn)
             best case: Ω(nlogn)
             whole efficiency: Θ(nlogn)
@@ -49,3 +66,13 @@ efficiency in terms of space
     evaluation (algorithms) that perform comparisons within the same set naturally require less space (memory) as it is only performing functions at limited amounts of addresses whereas performing multiple comparisons at once will require more space to operate as you create additional addresses to then perform comparisons upon (you create additional strings which then encompass additional bytes of data)
 
     this has a real-life relevancy in terms of cost
+
+recursion tips
+-------------------------------------------------------
+    Base Case
+    1) establish a base case for the recursive function and place that at the top. the base case will RETURN a value
+        ->for iterating a certain amount of times, this can be a number that reaches a certain amount and then returns
+        ->by defining the type of recursive function (say bool), this can be the situation in which we are finding the BASE comparison we are trying to make as true or false
+    Recursive Case
+    2) understand that the recursive function creates a call stack to the smallest degree possible, evaluates the last thing added to the stack first, and works backwards to the original input
+    
