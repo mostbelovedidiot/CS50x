@@ -1,0 +1,73 @@
+int preferences[i][j] = number of voters that prefer i over j
+
+bool locked[i][j] = if i is locked over j
+	->this will be conditional on if the delta of i over j is large enough
+		->large enough meaning, the NOT-SMALLEST disparity of all given deltas
+		->there will be a bunch of trues and finally one false indicating the smallest won
+		preference of i over j (eg: 5-4), which will NOT be locked in
+	->this will be one of the final iterations utilizing the data from pairs to then evaluate who has no edges
+	over them:
+		no edges = bool locked[whatever][candidate i] = always false, no one is locked in over i
+		so candidate i is the winner
+
+candidates is an array that gives a number to all the candidates, which we use in pairs.winner & .loser (See below)
+	for example: candidates[0] = Jimbo, which means we can imagine 0 to represent Jimbo
+
+
+COLLECTION OF VOTES [HARD DATA] AND RANKS PER VOTER
+========================================================================================================
+this is the hard data of the entire algorithm and in which we collect each voters preferences, pass it into
+the array preferences[i][j], and then pass it into the pairs for final analysis of edges
+
+ranks[candidate_count] is a single array containing the ranks of the candidates based off a single vote
+	-> the data is immediately passed through into preferences[i][j] via record_preference (sorting)
+	-> the array is called again to reset the values
+
+	if the candidate count is 5:
+	ranks[0] = the first preference of the voter
+	ranks[1] = the second preference of the voter
+	and so on
+
+then record_preference sends it to preferences[i][j]
+
+then the array is reset
+
+int voter_count = a number we retrieve to determine how many times we iterate through ranks[i]
+
+ALL POSSIBLE PAIRS WITH THE RESPECTIVE WINNER AND LOSER
+========================================================================================================
+pairs data will be used to determine the respective "edges" -- how large is the delta of one candidate over the other, aka just how preferred the candidate is overall -- which we will then lock in to finally determine which case we do not lock in (the smallest delta), thereby providing us with the winner (no edges against this person)
+
+pair is a type definition: defines any array with two structs
+	int .winner
+	int .loser
+
+pairs is the array itself defined by the type definition
+	pairs.winner
+	pairs.loser
+
+	and its size is defined by the mathematical formula n(n-1)/2, which gives all possible pairs
+	in which we define which candidate is the winner over the other in that respective pair
+		->for an array of max size 9, this will be 36 possible pairs
+
+	add_pairs: creating all the pairs
+	the INDEX of pairs is irrelevant pairs[0], pairs[1], etc. these just indicate the amount of all
+	possible pairs. what IS relevant is the NUMBER of .winner and .loser
+		pairs[0].winner = 1 (1 is associated with a candidate)
+		pairs[1].loser = 3 (3 is associated with a candidate)
+
+	sort_pairs: sort all the pairs by strength, highest delta between .winner and .loser
+
+	lock_pairs: for everything but the last pair, set bool locked[i][j] to true
+
+	print_winner: evaluate all the locked pairs and determine the winner where 
+
+
+int pair_count is the total amount of pairs
+int candidate_count is the total amount of candidates
+	->these will be helpful to determine when an edge should not be locked in since it is the last
+	instance in which an edge is established
+
+
+	
+

@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: Bubble sort experiences the largest delta in efficiency when comparing worst-case to best-case scenarios, since in a best-case scenario (when the data is already sorted), it will be only iterating through the entire set n times [Ω(n)]. In a worst-case scenario, it will have to iterate through the set multiple times [O(n^2)]. The real-time data indicated that this sorting algorithm had such a delta of significant note between random/reversed data sets and the already sorted data sets. It additionally took the longest in the reversed category, which is where Bubble Sort would suffer the most, having to swap the set entirely from pairs of compared indices from the first to the last index, and therefore iterating through the entire set the maximal amount of times.
+
+sort2 uses: Merge Sort
+
+How do you know?: This sorting algorithm is not only the fastest in all three categories, but also by a significant amount compared to the other two sorting algorithms. Considering it has an overall efficiency of [Θ(nlogn)] -- the worst & best case scenarios being relatively equal -- the timing data matches its behavior. It is important to note that random/reversed 50k timings were relatively equal to the sorted50k timing, indicating that its expected efficiency is indeed present in the timing data.
+
+sort3 uses: Selection Sort
+
+How do you know?: Like Merge Sort, Selection sort also has a relatively equal comparison of best-case to worst-case scenarios, with an overall efficiency of [Θ(n^2)]. This overall efficiency is certainly slower than Merge Sort in larger data sets, and the algorithm's timing in such scenarios grows quite rapidly from centiseconds to whole seconds. Since the algorithm's speed is much higher in the larger data sets, the relative speed across all three tests is somewhat the same (though very slightly faster in the sorted scenarios, which is to be expected considering the algorithm does not have to note multiple instances of a number being lower than the previous indices [the list is arranged and the lowest number will always be in the same spot]), and the timing data is higher overall in large data sets compared to the second sorting algorithm, we can conclude that this is Selection Sort.

@@ -3,6 +3,8 @@
         "__locale": "c",
         "string.h": "c",
         "string": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "cs50.h": "c",
+        "tuple": "c"
     }
 }
