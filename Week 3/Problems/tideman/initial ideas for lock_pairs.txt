@@ -1,0 +1,69 @@
+****THE FINAL SOLUTION WILL REQUIRE A RECURSIVE FUNCTION, THESE ARE ONLY INITIAL NOTES****
+
+initial steps
+==============
+
+1] lock the first sorted pair (highest voting strength), index 0
+
+*not sure on next step, considering consecutive use case
+2] check all (pair_count) for same value as index 0, lock those too
+	->simple for loop to iterate through sorted pairs
+
+cycle checks
+==============
+1] check for consecutive use case
+	lock in if good
+	iterate using a variable within the loop when locked occurs
+
+handles consecutive use case?
+=======================================================
+
+x y
+3 0		!(y x) minimum condition, 0 cannot go to 3, unnecessary check since the sorted pairs will never do so
+
+0 1		!(1 3) one cannot go to three
+			IF the loser of the previous index is equal to the winner of the next index
+			***so pairs[1].loser cannot go to pairs[0].winner
+
+
+
+i = 0
+lockedpairsiteration = 2
+
+0 1		
+
+2 0		no real changes here
+
+1 2		(!1 2) 	IF the loser of the previous index is equal to the winner of the next index
+			***so pairs[1].loser cannot go to pairs[0].winner
+
+(assuming previous was locked)
+2 3		(!2 3)	IF the loser of the previous index is equal to the winner of the next index
+			***so pairs[1].loser cannot go to pairs[0].winner
+
+
+check 0 through pair_count no matter what
+
+
+
+
+0 1
+
+1 2
+
+2 3
+
+3 4
+
+4 0
+
+i = 3
+lockedpairsiteration = 4
+z = 0
+y = 1
+
+function that checks if its a winner
+function that checks if its a loser
+
+
+***there may be a mathematical way to do it by adding together the pair values
