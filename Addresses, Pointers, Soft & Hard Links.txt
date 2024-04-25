@@ -19,21 +19,27 @@ clocks
 
     In more complex architectures, where there are multiple active components (CPUs, FPUs, graphics cards, memory controllers, I/O controllers) running at different speeds, then the bus clock is often the fundamental synchronizing signal, and each component then multiplies the frequency of the bus clock signal by a specific ratio to obtain its internal system clock signal
 
-addresses
+& Provides the address of something stored in memory.
+* Instructs the compiler to go to a location in memory.
+
+addresses [&]
 -------------------------------------------------------
+    typically use hexadecimal values
+
     a non-negative integer number that uniquely identifies a specific location in the storage available to the program
         1) on small CPUs, this will literally be the physical address
     can think of main memory or RAM as an extensive array of bytes and the addresses as the indexes of each array element or byte within the array. most variables stored in the array (ie: in main memory) are larger than one byte, so the address of each variable is the index of the first byte of that variable
 
     a variable is a named location in memory with three main characteristics:
-        1) namne
+        1) name
         2) content
         3) address
     the compiler can interpret the name at either its address (l-value) or contents (r-value) based on how the variable appears in a given statement. for the variable counter: (l-value: counter = 5) (r-value: balance = counter * 10)
 
-pointer
+pointer [*]
 -------------------------------------------------------
     a variable that stores or contains the address of data, possibly another variable. pointers allow programmers to access other variables by their addresses. any programming element (variable, object, function, etc.) stored in memory has an address that can be found and saved in a pointer
+        ->as addresses can be quite extensive, pointers are typically 8 byte values
 
     example of defining a pointer:
         int *a=&b  ==> actually translate to:
@@ -47,6 +53,8 @@ pointer
             VALUE of *a (b)     = 10
         ***note how a & *a have different values
         you basically store the address in a variable, and then use the pointer * to then indicate that you are retrieving the value of that address
+            ->the * when used by an int sets it to a TYPE of pointer whereas
+            ->the * when used by a variable (already defined) says GO-TO this location, thereby retrieving the value
 
     swapping values of variable and pointers:
         https://codeburst.io/pointers-in-5-minutes-b94f9d1dfdb5
@@ -58,9 +66,17 @@ pointer
         int *ptr=NULL;
         on assigning a pointer to null you are just telling it isn’t pointing to anything
 
-pointers vs addresses
+pointers vs addresses, pointer arithmetic
 -------------------------------------------------------
     an address is a location in main memory and cannot change. alternatively, a pointer is a kind of variable that holds or stores an address, and the content of a pointer can change.
+
+    as you can modify the values of a pointer, by performing basic arithmetic you can iterate through portions of a string (amongst other things):
+    int main(void)
+        char *s = "HI!";
+        printf("%c\n", *s);             = H
+        printf("%c\n", *(s + 1));       = I
+        printf("%c\n", *(s + 2));       = !
+
 
 addresses & scope
 -------------------------------------------------------

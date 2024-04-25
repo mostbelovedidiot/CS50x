@@ -28,7 +28,11 @@ types (some is CS-50 exclusive)
     float   small decimal           %f                  4 bytes
     int     small whole number      %i                  4 bytes
     long    large whole number      %li                 8 bytes
-    string  string of chars         %                   ? bytes
+    string  string of chars         %s                   ? bytes
+        ->strings are a CS50 struct so the declaration is actually this:
+            typedef char *string;
+            so calling string s = "Boy!"
+            is actually char *s = "Boy!"
         ->strings are literally arrays of chars
         ->strings include a sentinel value at the end of the array to indicate the end of the string, which has a value of \0 (which means 8 '0' bits) or NUL in an IDE (not to be confused with NULL, "NUL" simply means the sentinel value of 8 '0' bits --> it is also the ASCII character of value 0)
             *sentinel value: a special value in the context of an algorithm which uses its presence as a condition of termination, typically in a loop or recursive algorithm
@@ -53,9 +57,12 @@ types (some is CS-50 exclusive)
                 string school;
             } spells;
                 ->for style, spells is located on the same line as the curly brace
+        ->Can define a BYTE struct as uint8_t (unsigned integer of 8 bytes)
+            type def uint8_t BYTE;
 
     *numbers are stored as 4 bytes (32 bits), or 8 bytes (64 bits) for double and long
     *so x64 architecture is literally the ability to store longer numbers, more specifically by adding 8 new 64-bit registers and zero-extending (adding zeroes) to the 32-bit registers
+        ->this has the addon effect of letting you utilize more memory as the maximum amount of 32-bit registers is literally 4GB of RAM
 
 Linux Commands
 -------------------------------------------------------

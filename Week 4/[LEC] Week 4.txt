@@ -1,0 +1,25 @@
+Hexadecimal, Pointers/Addresses
+===================================================================================
+hexadecimal
+-------------------------------------------------------
+    1) utilizes base-16: 0-9 [10 bases], + a-f[6 additional bases]
+        assuming two digits (two-digit hexadecimal system)
+        FF = 255 (16*16 - 1 [to account for the 0 index], or 16[left column multiplier]*15[f-value] + 15 [f-value of right column]
+    2) preceded by 0x, which denotes that hexadecimal is being used
+        "0xFF"=255, "0x18"=24 (10 is 16, + 8 = 24)
+        ->In XY, the value is calculated as (X * 16) + Y
+    3) useful because 4 bits (bits being base-2, 2^4 = 16 possibilities) represents exactly 16 digits. 8 bits will represent 256 possibilities (0-255), which is exactly 1 byte! So just by virtue of the base-2 system operates, there was a mathematical symmetry in using a base-16 system whereby two digits will represent a maximum byte value:
+        0xFF == 11111111
+
+Pointers/Addresses
+-------------------------------------------------------
+CS50x/Addresses, Pointers, Soft & Hard Links.txt
+
+efficiency in terms of space
+-------------------------------------------------------
+
+
+recursion tips
+-------------------------------------------------------
+
+    
